@@ -9,7 +9,7 @@ const TodoList = ({ todos, setTodos }) => {
             todo={todo}
             index={index}
             setTodos={setTodos}
-            key={`${todo.todoContent}-${index}`}
+            key={`${todo.content}-${index}`}
           />
         );
       })}

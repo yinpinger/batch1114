@@ -13,7 +13,7 @@ const TodoInput = ({ setTodos }) => {
       return [
         ...prevTodos,
         {
-          todoContent: userInput,
+          content: userInput,
           isCompleted: false,
         },
       ];

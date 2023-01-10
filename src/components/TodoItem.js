@@ -1,5 +1,5 @@
 const TodoItem = ({ todo, index, setTodos }) => {
-  const { todoContent, isCompleted } = todo;
+  const { content, isCompleted } = todo;
 
   const delTodo = () => {
     setTodos((prevTodos) => {
@@ -24,7 +24,7 @@ const TodoItem = ({ todo, index, setTodos }) => {
         onDoubleClick={modTodo}
         className={!isCompleted ? 'todo-regular' : 'todo-completed'}
       >
-        {todoContent}
+        {content}
       </span>
       <button onClick={delTodo}>Delete</button>
     </li>
