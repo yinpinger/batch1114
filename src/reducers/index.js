@@ -1,5 +1,14 @@
 //we could put all todos into redux store
-import { ADD_TODO, MOD_TODO, DEL_TODO, INIT_TODO } from '../actions/index';
+import { combineReducers } from 'redux';
+
+import {
+  ADD_TODO,
+  MOD_TODO,
+  DEL_TODO,
+  INIT_TODO,
+  ERROR,
+  RESET_ERROR,
+} from '../actions/index';
 
 export const reducer = (state = [], { type, payload }) => {
   switch (type) {
@@ -21,3 +30,22 @@ export const reducer = (state = [], { type, payload }) => {
       return state;
   }
 };
+
+export const errorReducer = (
+  state = { error: false, message: '' },
+  { type, payload }
+) => {
+  switch (type) {
+    case ERROR:
+      return { ...state, ...payload };
+    case RESET_ERROR:
+      return { error: false, message: '' };
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({
+  todos: reducer,
+  error: errorReducer,
+});

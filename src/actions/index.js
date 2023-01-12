@@ -6,17 +6,30 @@ export const ADD_TODO = 'ADD_TODO';
 export const MOD_TODO = 'MOD_TODO';
 export const DEL_TODO = 'DEL_TODO';
 export const INIT_TODO = 'INIT_TODO';
+export const ERROR = 'ERROR';
+export const RESET_ERROR = 'RESET_ERROR';
 
-export const initTodo = (dispatch) => async () => {
-  try {
-    const todos = await todoApi.getAllTodos();
-    dispatch({
-      type: INIT_TODO,
-      payload: todos,
-    });
-  } catch (error) {
-    console.log(error);
-  }
+export const closeErrorModal = (dispatch) => () => {
+  dispatch({
+    type: RESET_ERROR,
+  });
+};
+
+export const initTodo = (dispatch) => () => {
+  todoApi
+    .getAllTodos()
+    .then((todos) =>
+      dispatch({
+        type: INIT_TODO,
+        payload: todos,
+      })
+    )
+    .catch((error) =>
+      dispatch({
+        type: ERROR,
+        payload: { error: true, message: 'init todos failed' },
+      })
+    );
 };
 
 export const addTodo = (dispatch) => async (content) => {

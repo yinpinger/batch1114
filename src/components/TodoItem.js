@@ -6,7 +6,7 @@ const TodoItem = ({ todo, index }) => {
   const { content, isCompleted } = todo;
 
   return (
-    <li>
+    <li data-testid={`${content}-${index}`}>
       <span
         onDoubleClick={() => modTodo(dispatch)(index)}
         className={!isCompleted ? 'todo-regular' : 'todo-completed'}

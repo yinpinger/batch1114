@@ -4,8 +4,12 @@ export const todoApi = {
     { content: 'watch some movies', isCompleted: false },
     { content: 'listen some music', isCompleted: false },
   ],
-  getAllTodos: async function () {
-    return new Promise((resolve) => {
+  getAllTodos: async function (rejectPromise = false) {
+    return new Promise((resolve, reject) => {
+      if (rejectPromise) {
+        reject('Init todos failed');
+      }
+
       setTimeout(() => {
         resolve(JSON.parse(JSON.stringify(this.todos)));
       }, 500);

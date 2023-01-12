@@ -25,13 +25,16 @@ const TodoInput = () => {
   return (
     <div>
       <input
+        data-testid='todo-text-input'
         type='text'
         value={userInput}
         onChange={(e) => {
           setUserInput(e.target.value);
         }}
       />
-      <button onClick={handleAddTodo}>Add</button>
+      <button onClick={handleAddTodo} data-testid='add-todo-btn'>
+        Add
+      </button>
     </div>
   );
 };
